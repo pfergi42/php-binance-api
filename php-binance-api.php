@@ -27,9 +27,9 @@ if (version_compare(phpversion(), '7.0', '<=')) {
  */
 class API
 {
-    protected $base = 'https://api.binance.com/api/'; // /< REST endpoint for the currency exchange
-    protected $wapi = 'https://api.binance.com/wapi/'; // /< REST endpoint for the withdrawals
-    protected $stream = 'wss://stream.binance.com:9443/ws/'; // /< Endpoint for establishing websocket connections
+    protected $base = 'https://api.binance.us/api/'; // /< REST endpoint for the currency exchange
+    protected $wapi = 'https://api.binance.us/wapi/'; // /< REST endpoint for the withdrawals
+    protected $stream = 'wss://stream.binance.us:9443/ws/'; // /< Endpoint for establishing websocket connections
     protected $api_key; // /< API key that you created in the binance website member area
     protected $api_secret; // /< API secret that was given to you when you created the api key
     protected $depthCache = []; // /< Websockets depth cache
@@ -889,7 +889,7 @@ class API
      * @see buy()
      * @see sell()
      * @see marketBuy()
-     * @see marketSell() $this->httpRequest( "https://api.binance.com/api/v1/ticker/24hr");
+     * @see marketSell() $this->httpRequest( "https://api.binance.us/api/v1/ticker/24hr");
      *
      * @param $url string the endpoint to query, typically includes query string
      * @param $method string this should be typically GET, POST or DELETE
@@ -1190,9 +1190,9 @@ class API
 
             $symbol = $asset . 'BTC';
 
-            if ($symbol === 'BTCUSDT') {
-                $btcValue = number_format($obj['free'] / $priceData['BTCUSDT'], 8, '.', '');
-                $btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSDT'], 8, '.', '');
+            if ($symbol === 'BTCUSD') {
+                $btcValue = number_format($obj['free'] / $priceData['BTCUSD'], 8, '.', '');
+                $btcTotal = number_format(($obj['free'] + $obj['locked']) / $priceData['BTCUSD'], 8, '.', '');
             } elseif (isset($priceData[$symbol]) === false) {
                 $btcValue = $btcTotal = 0;
             } else {
